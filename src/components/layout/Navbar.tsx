@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Settings, Home, History } from "lucide-react";
+import { Settings, Home } from "lucide-react";
 
 export function Navbar() {
   const location = useLocation();
@@ -25,26 +25,6 @@ export function Navbar() {
               >
                 <Home className="w-4 h-4" />
                 Home
-              </Button>
-            </Link>
-
-            <Link to="/preferences">
-              <Button
-                variant={isActive("/preferences") ? "default" : "ghost"}
-                className="flex items-center gap-2"
-              >
-                <Settings className="w-4 h-4" />
-                Preferences
-              </Button>
-            </Link>
-
-            <Link to="/history">
-              <Button
-                variant={isActive("/history") ? "default" : "ghost"}
-                className="flex items-center gap-2"
-              >
-                <History className="w-4 h-4" />
-                History
               </Button>
             </Link>
           </div>
