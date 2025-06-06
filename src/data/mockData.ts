@@ -1,0 +1,141 @@
+
+// Mock data for development while TMDB integration is being set up
+export const mockMovies = [
+  {
+    id: 1,
+    title: "The Dark Knight",
+    overview: "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets.",
+    poster_path: "/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    backdrop_path: "/hqkIcbrOHL86UncnHIsHVcVmzue.jpg",
+    release_date: "2008-07-18",
+    vote_average: 9.0,
+    genre_ids: [28, 80, 18],
+    adult: false,
+    original_language: "en",
+    original_title: "The Dark Knight",
+    popularity: 123.456,
+    video: false,
+    vote_count: 28000
+  },
+  {
+    id: 2,
+    title: "Inception",
+    overview: "Dom Cobb is a skilled thief, the absolute best in the dangerous art of extraction, stealing valuable secrets from deep within the subconscious during the dream state.",
+    poster_path: "/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg",
+    backdrop_path: "/s3TBrRGB1iav7gFOCNx3H31MoES.jpg",
+    release_date: "2010-07-16",
+    vote_average: 8.8,
+    genre_ids: [28, 878, 53],
+    adult: false,
+    original_language: "en",
+    original_title: "Inception",
+    popularity: 98.765,
+    video: false,
+    vote_count: 25000
+  },
+  {
+    id: 3,
+    title: "Interstellar",
+    overview: "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.",
+    poster_path: "/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+    backdrop_path: "/xJHokMbljvjADYdit5fK5VQsXEG.jpg",
+    release_date: "2014-11-07",
+    vote_average: 8.6,
+    genre_ids: [18, 878],
+    adult: false,
+    original_language: "en",
+    original_title: "Interstellar",
+    popularity: 87.543,
+    video: false,
+    vote_count: 22000
+  },
+  {
+    id: 4,
+    title: "The Matrix",
+    overview: "Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth.",
+    poster_path: "/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+    backdrop_path: "/fNG7i7RqMErkcqhohV2a6cV1Ehy.jpg",
+    release_date: "1999-03-31",
+    vote_average: 8.7,
+    genre_ids: [28, 878],
+    adult: false,
+    original_language: "en",
+    original_title: "The Matrix",
+    popularity: 76.432,
+    video: false,
+    vote_count: 20000
+  },
+  {
+    id: 5,
+    title: "Avengers: Endgame",
+    overview: "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more.",
+    poster_path: "/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+    backdrop_path: "/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg",
+    release_date: "2019-04-26",
+    vote_average: 8.4,
+    genre_ids: [28, 12, 878],
+    adult: false,
+    original_language: "en",
+    original_title: "Avengers: Endgame",
+    popularity: 104.321,
+    video: false,
+    vote_count: 18000
+  }
+];
+
+export const mockUsers = [
+  {
+    id: 1,
+    name: "Alex Johnson",
+    avatar: "/placeholder.svg",
+    watchedCount: 247,
+    favoriteGenres: ["Action", "Sci-Fi", "Drama"],
+    lastActive: "2024-01-15"
+  },
+  {
+    id: 2,
+    name: "Sarah Chen",
+    avatar: "/placeholder.svg",
+    watchedCount: 189,
+    favoriteGenres: ["Romance", "Comedy", "Drama"],
+    lastActive: "2024-01-14"
+  },
+  {
+    id: 3,
+    name: "Mike Rodriguez",
+    avatar: "/placeholder.svg",
+    watchedCount: 312,
+    favoriteGenres: ["Horror", "Thriller", "Action"],
+    lastActive: "2024-01-13"
+  },
+  {
+    id: 4,
+    name: "Emma Thompson",
+    avatar: "/placeholder.svg",
+    watchedCount: 156,
+    favoriteGenres: ["Animation", "Family", "Adventure"],
+    lastActive: "2024-01-12"
+  }
+];
+
+export const mockGenres = [
+  { id: 28, name: "Action" },
+  { id: 12, name: "Adventure" },
+  { id: 16, name: "Animation" },
+  { id: 35, name: "Comedy" },
+  { id: 80, name: "Crime" },
+  { id: 99, name: "Documentary" },
+  { id: 18, name: "Drama" },
+  { id: 10751, name: "Family" },
+  { id: 14, name: "Fantasy" },
+  { id: 36, name: "History" },
+  { id: 27, name: "Horror" },
+  { id: 10402, name: "Music" },
+  { id: 9648, name: "Mystery" },
+  { id: 10749, name: "Romance" },
+  { id: 878, name: "Science Fiction" },
+  { id: 10770, name: "TV Movie" },
+  { id: 53, name: "Thriller" },
+  { id: 10752, name: "War" },
+  { id: 37, name: "Western" }
+];
