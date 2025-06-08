@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Search, User } from "lucide-react";
 
 interface Movie {
-  id: number;
+  id: string | number;
   title: string;
   asin: string;
   score?: number;
@@ -20,6 +20,13 @@ interface Recommendation {
   top_recommendations: Movie[];
 }
 
+interface OmdbMovie {
+  Title: string;
+  Poster: string;
+  Year: string;
+  imdbID: string;
+}
+
 export default function Home() {
   const { userId } = useParams();
   const navigate = useNavigate();
@@ -29,6 +36,7 @@ export default function Home() {
   const [recommendation, setRecommendation] = useState<Recommendation | null>(
     null
   );
+  const [searchResults, setSearchResults] = useState<OmdbMovie[]>([]);
 
   const fetchRecommendation = useCallback(async () => {
     try {
@@ -61,21 +69,24 @@ export default function Home() {
     try {
       setLoading(true);
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/search?query=${encodeURIComponent(
-          searchQuery
-        )}`
+        `${import.meta.env.VITE_OMDB_BASE_URL}apikey=${
+          import.meta.env.VITE_OMDB_API_KEY
+        }&s=${encodeURIComponent(searchQuery)}`
       );
       if (!response.ok) throw new Error("Failed to search movies");
       const data = await response.json();
-      setRecommendation((prev) =>
-        prev
-          ? {
-              ...prev,
-              top_recommendations: data,
-            }
-          : null
-      );
-      setError(null);
+      console.log(data);
+      if (data.Response === "True") {
+        const results = data.Search.map((item: OmdbMovie) => ({
+          id: item.imdbID,
+          title: item.Title,
+          image_url: item.Poster,
+          asin: item.imdbID,
+        }));
+        setSearchResults(results);
+      } else {
+        setSearchResults([]);
+      }
     } catch (err) {
       setError("Failed to search movies. Please try again later.");
       console.error("Error searching movies:", err);
@@ -132,6 +143,20 @@ export default function Home() {
               <MovieCarousel
                 title="Recommended for You"
                 movies={recommendation.top_recommendations}
+                showDetails={true}
+              />
+            </>
+          )}
+          {searchQuery && searchResults.length > 0 && (
+            <>
+              <MovieCarousel
+                title={`Search results for "${searchQuery}"`}
+                movies={searchResults.map((result) => ({
+                  id: result.imdbID,
+                  title: result.Title,
+                  image_url: result.Poster,
+                  asin: result.imdbID,
+                }))}
                 showDetails={true}
               />
             </>

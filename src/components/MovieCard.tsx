@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 interface Movie {
-  id: number;
+  id: string | number;
   title: string;
   overview?: string;
   release_date?: string;
@@ -52,6 +52,7 @@ const MovieCard = ({ movie, showDetails = false }: MovieCardProps) => {
   // }, [movie.asin]);
 
   React.useEffect(() => {
+    // console.log(movie.image_url);
     if (movie.image_url) {
       setPosterUrl(movie.image_url);
     } else {

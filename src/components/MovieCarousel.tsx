@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import MovieCard from "./MovieCard";
 
 interface Movie {
-  id: number;
+  id: string | number;
   title: string;
   asin: string;
   score?: number;
@@ -22,6 +22,7 @@ const MovieCarousel = ({
   movies,
   showDetails = false,
 }: MovieCarouselProps) => {
+  // console.log(movies);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
