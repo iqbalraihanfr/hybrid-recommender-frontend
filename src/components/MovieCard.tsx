@@ -53,7 +53,7 @@ const MovieCard = ({ movie, showDetails = false }: MovieCardProps) => {
 
   React.useEffect(() => {
     // console.log(movie.image_url);
-    if (movie.image_url) {
+    if (movie.image_url && movie.image_url !== "N/A") {
       setPosterUrl(movie.image_url);
     } else {
       setPosterUrl("/placeholder.svg");

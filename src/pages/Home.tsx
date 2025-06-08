@@ -36,7 +36,7 @@ export default function Home() {
   const [recommendation, setRecommendation] = useState<Recommendation | null>(
     null
   );
-  const [searchResults, setSearchResults] = useState<OmdbMovie[]>([]);
+  const [searchResults, setSearchResults] = useState<Movie[]>([]);
 
   const fetchRecommendation = useCallback(async () => {
     try {
@@ -80,7 +80,7 @@ export default function Home() {
         const results = data.Search.map((item: OmdbMovie) => ({
           id: item.imdbID,
           title: item.Title,
-          image_url: item.Poster,
+          image_url: item.Poster !== "N/A" ? item.Poster : "/placeholder.svg",
           asin: item.imdbID,
         }));
         setSearchResults(results);
@@ -151,12 +151,7 @@ export default function Home() {
             <>
               <MovieCarousel
                 title={`Search results for "${searchQuery}"`}
-                movies={searchResults.map((result) => ({
-                  id: result.imdbID,
-                  title: result.Title,
-                  image_url: result.Poster,
-                  asin: result.imdbID,
-                }))}
+                movies={searchResults}
                 showDetails={true}
               />
             </>
