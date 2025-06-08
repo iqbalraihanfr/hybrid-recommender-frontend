@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import MovieCard from "@/components/MovieCard";
 import MovieCarousel from "@/components/MovieCarousel";
@@ -11,6 +11,7 @@ interface Movie {
   title: string;
   asin: string;
   score?: number;
+  image_url?: string;
 }
 
 interface Recommendation {
@@ -29,13 +30,7 @@ export default function Home() {
     null
   );
 
-  useEffect(() => {
-    if (userId) {
-      fetchRecommendation();
-    }
-  }, [userId]);
-
-  const fetchRecommendation = async () => {
+  const fetchRecommendation = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch(
@@ -51,7 +46,13 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      fetchRecommendation();
+    }
+  }, [userId, fetchRecommendation]);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();

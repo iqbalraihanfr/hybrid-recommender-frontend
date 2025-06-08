@@ -14,6 +14,7 @@ interface Movie {
   genre_ids?: number[];
   asin?: string; // IMDB ID
   score?: number;
+  image_url?: string;
 }
 
 interface MovieCardProps {
@@ -21,35 +22,42 @@ interface MovieCardProps {
   showDetails?: boolean;
 }
 
-const OMDB_API_KEY = "dd23a155";
+// const OMDB_API_KEY = "dd23a155";
 
 const MovieCard = ({ movie, showDetails = false }: MovieCardProps) => {
   // Get poster from OMDB using the movie.asin (IMDB ID)
   const [posterUrl, setPosterUrl] = React.useState("/placeholder.svg");
 
-  React.useEffect(() => {
-    const fetchPoster = async () => {
-      if (!movie.asin) {
-        setPosterUrl("/placeholder.svg");
-        return;
-      }
-      try {
-        const response = await fetch(
-          `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${movie.asin}`
-        );
-        const data = await response.json();
-        if (data.Poster && data.Poster !== "N/A") {
-          setPosterUrl(data.Poster);
-        } else {
-          setPosterUrl("/placeholder.svg");
-        }
-      } catch (error) {
-        setPosterUrl("/placeholder.svg");
-      }
-    };
-    fetchPoster();
-  }, [movie.asin]);
+  // React.useEffect(() => {
+  //   const fetchPoster = async () => {
+  //     if (!movie.asin) {
+  //       setPosterUrl("/placeholder.svg");
+  //       return;
+  //     }
+  //     try {
+  //       const response = await fetch(
+  //         `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${movie.asin}`
+  //       );
+  //       const data = await response.json();
+  //       if (data.Poster && data.Poster !== "N/A") {
+  //         setPosterUrl(data.Poster);
+  //       } else {
+  //         setPosterUrl("/placeholder.svg");
+  //       }
+  //     } catch (error) {
+  //       setPosterUrl("/placeholder.svg");
+  //     }
+  //   };
+  //   fetchPoster();
+  // }, [movie.asin]);
 
+  React.useEffect(() => {
+    if (movie.image_url) {
+      setPosterUrl(movie.image_url);
+    } else {
+      setPosterUrl("/placeholder.svg");
+    }
+  }, [movie.image_url]);
   const rating = movie.vote_average ? movie.vote_average.toFixed(1) : null;
 
   return (

@@ -8,6 +8,7 @@ interface Movie {
   title: string;
   asin: string;
   score?: number;
+  image_url?: string;
 }
 
 interface MovieCarouselProps {
