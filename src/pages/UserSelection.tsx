@@ -103,22 +103,79 @@ const UserSelection = () => {
           ))}
         </div>
 
-        {/* Add New Profile */}
+        {/* Masuk Admin (replace Add New Profile) */}
         <div className="mt-12 text-center">
-          <Card className="inline-block bg-gray-900/30 border-gray-700 border-dashed hover:border-red-500 transition-colors cursor-pointer">
-            <CardContent className="p-10">
-              <div className="w-20 h-20 mx-auto bg-gray-800 rounded-full flex items-center justify-center mb-6">
-                <User className="h-10 w-10 text-gray-400" />
-              </div>
-              <p className="text-gray-400 font-medium text-lg">
-                Add New Profile
-              </p>
-            </CardContent>
-          </Card>
+          <AdminLoginCard />
         </div>
       </div>
     </div>
   );
 };
+
+function AdminLoginCard() {
+  const [userId, setUserId] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    if (!userId.match(/^\d+$/)) {
+      setError("ID hanya boleh angka");
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/recommend?id=${userId}&top_k=10`
+      );
+      if (!res.ok) throw new Error("ID tidak ditemukan atau server error");
+      // Optionally, bisa cek data di sini
+      localStorage.setItem("selectedUserId", userId);
+      navigate(`/home/${userId}`);
+    } catch (err: unknown) {
+      let msg = "Terjadi kesalahan";
+      if (err instanceof Error) msg = err.message;
+      setError(msg);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Card className="inline-block bg-gray-900/30 border-gray-700 border-dashed hover:border-red-500 transition-colors">
+      <CardContent className="p-10">
+        <div className="w-20 h-20 mx-auto bg-gray-800 rounded-full flex items-center justify-center mb-6">
+          <User className="h-10 w-10 text-gray-400" />
+        </div>
+        <p className="text-gray-400 font-medium text-lg mb-4">Masuk Admin</p>
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center gap-4"
+        >
+          <input
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            placeholder="Masukkan ID User"
+            className="px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-red-500 outline-none w-48 text-center"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
+            disabled={loading}
+          />
+          <button
+            type="submit"
+            className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded font-semibold disabled:opacity-60"
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Masuk"}
+          </button>
+        </form>
+        {error && <div className="text-red-500 mt-4 text-sm">{error}</div>}
+      </CardContent>
+    </Card>
+  );
+}
 
 export default UserSelection;
