@@ -40,7 +40,7 @@ const MovieCarousel = ({
   };
 
   return (
-    <div className="relative group">
+    <div className="relative">
       <h2 className="text-xl font-bold text-white mb-4">{title}</h2>
 
       {/* Navigation buttons */}

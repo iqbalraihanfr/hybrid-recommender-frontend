@@ -74,7 +74,7 @@ const MovieCard = ({ movie, showDetails = false }: MovieCardProps) => {
           <div className="flex space-x-2">
             <Button size="sm" className="bg-red-600 hover:bg-red-700">
               <Play className="h-4 w-4 mr-1" />
-              Playsssss
+              Play
             </Button>
             <Button
               size="sm"
