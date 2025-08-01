@@ -95,7 +95,7 @@ export const mockMovies = [
 export const mockUsers = [
   {
     id: 1,
-    name: "Alex Johnson",
+    name: "Budi Santoso",
     avatar: "/placeholder.svg",
     watchedCount: 247,
     favoriteGenres: ["Action", "Sci-Fi", "Drama"],
@@ -103,7 +103,7 @@ export const mockUsers = [
   },
   {
     id: 2,
-    name: "Sarah Chen",
+    name: "Siti Aminah",
     avatar: "/placeholder.svg",
     watchedCount: 189,
     favoriteGenres: ["Romance", "Comedy", "Drama"],
@@ -111,7 +111,7 @@ export const mockUsers = [
   },
   {
     id: 3,
-    name: "Mike Rodriguez",
+    name: "Agus Wijaya",
     avatar: "/placeholder.svg",
     watchedCount: 312,
     favoriteGenres: ["Horror", "Thriller", "Action"],
@@ -119,7 +119,7 @@ export const mockUsers = [
   },
   {
     id: 4,
-    name: "Emma Thompson",
+    name: "Dewi Lestari",
     avatar: "/placeholder.svg",
     watchedCount: 156,
     favoriteGenres: ["Animation", "Family", "Adventure"],
